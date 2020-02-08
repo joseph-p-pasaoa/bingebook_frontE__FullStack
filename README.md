@@ -1,4 +1,4 @@
-# BingeBook (front end) (full-stack app)
+# Bingebook (front end) (full-stack app)
 
 ## Repos
 + [Back End](https://github.com/joseph-p-pasaoa/bingebook_backE__FullStack)
@@ -9,9 +9,9 @@
 
 
 ## Instructional Team
-+ **LEAD Instructor:** [Alejandro Franco: @alejo4373](https://github.com/alejo4373)
-+ **IA:** [Jung Rae Jang: @jungraejang](https://github.com/jungraejang)
-+ **IA:** [Wynter Reid: @wynterreid](https://github.com/wynterreid)
++ **LEAD Instructor:** [Alejandro Franco -- ( @alejo4373 )](https://github.com/alejo4373)
++ **IA:** [Jung Rae Jang -- ( @jungraejang )](https//github.com/jungraejang)
++ **IA:** [Wynter Reid -- ( @wynterreid )](https://github.com/wynterreid)
 
 
 ---
