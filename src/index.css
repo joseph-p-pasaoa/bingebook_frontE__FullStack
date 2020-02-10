@@ -1,7 +1,48 @@
+/*
+JOSEPH P. PASAOA
+Client INDEX CSS | Bingebook (a full-stack binge-facilitating app)
+*/
+
+
+/* FONT INITS 
+font-family: 'Raleway', sans-serif;   // copy font
+font-family: 'Cinzel', serif;         // headers
+font-family: 'Poiret One', cursive;   // headers alternative
+font-family: 'Cookie', cursive;       // Logo+Branding
+*/
+@font-face {
+  font-family: 'Cookie';
+  src: url('./assets/fonts/Cookie/Cookie-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Raleway';
+  src: url('./assets/fonts/Raleway/Raleway-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Cinzel';
+  src: url('./assets/fonts/Cinzel/Cinzel-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+/* @font-face {
+  font-family: 'Poiret One';
+  src: url('./assets/fonts/Poiret_One/PoiretOne-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+} */
+
+
+/* COLOR THEME
+?????
+*/
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: 'Raleway', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

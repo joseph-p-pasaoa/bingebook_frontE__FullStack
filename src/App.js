@@ -1,24 +1,20 @@
+/*
+JOSEPH P. PASAOA
+Client App MAIN Component | Bingebook (a full-stack binge-facilitating app)
+*/
+
+
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>BingebOOk</h1>
+      <br />
+      <br />
+      <h2>Outlander (2014-)</h2>
+      <p>Hello world, Bingebook loading...!</p>
     </div>
   );
 }
