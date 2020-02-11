@@ -8,11 +8,6 @@ body {
   font-family: 'Oxygen', sans-serif;
 }
 
-.App {
-  text-align: left;
-  font-size: 1em;
-}
-
 h1 {
   font-family: 'Cookie', cursive;
   font-size: 3.75em;
@@ -27,3 +22,28 @@ p {
   font-family: 'Oxygen', sans-serif;
   font-size: 0.9em;
 }
+
+
+html, body, div#root, .App, div#base-grid {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  text-align: left;
+  font-size: 1em;
+}
+
+div#base-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 80px;
+}
+
+footer {
+  grid-row: 2;
+  position: relative;
+}
+
