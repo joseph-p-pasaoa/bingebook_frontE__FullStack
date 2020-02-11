@@ -4,15 +4,17 @@ Logo CSS | Bingebook (a full-stack binge-facilitating app)
 */
 
 
-.logo--container {
+a.logo--container {
+    margin: 0px 14px;
+
     text-decoration: none;
-    background-color: blue;
+    background-color: transparent;
 }
 
 p#logo {
     width: auto;
     height: 68px;
-    padding: 0px 18px;
+    padding: 0px 6px;
 
     font-family: 'Cookie', cursive;
     font-size: 3.75em;
@@ -21,5 +23,5 @@ p#logo {
     text-decoration: none;
 
     color: #000;
-    background-color: orange;
+    background-color: transparent;
 }

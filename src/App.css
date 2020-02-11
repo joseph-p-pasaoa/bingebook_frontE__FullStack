@@ -31,6 +31,10 @@ html, body, div#root, .App {
     width: 100%;
 }
 
+ul, li {
+    list-style: none;
+}
+
 .App {
     position: relative;
 

@@ -25,7 +25,7 @@ font-family: 'Cookie', cursive;       // Logo+Branding
 }
 @font-face {
   font-family: 'Cinzel';
-  src: url('./assets/fonts/Cinzel/Cinzel-Bold.ttf') format('truetype');
+  src: url('./assets/fonts/Cinzel/Cinzel-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }

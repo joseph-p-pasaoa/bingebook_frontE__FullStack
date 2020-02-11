@@ -23,6 +23,7 @@ const NavBar = ({cId}) => {
         <NavLink to={`/users`}><li>Users</li></NavLink>
         <NavLink to={`/shows`}><li>Shows</li></NavLink>
         <NavLink to={`/about`}><li>About</li></NavLink>
+        <li id="active-slide"></li>
       </ul>
     </nav>
   );
