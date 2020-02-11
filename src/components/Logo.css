@@ -1,0 +1,25 @@
+/*
+JOSEPH P. PASAOA
+Logo CSS | Bingebook (a full-stack binge-facilitating app)
+*/
+
+
+.logo--container {
+    text-decoration: none;
+    background-color: blue;
+}
+
+p#logo {
+    width: auto;
+    height: 68px;
+    padding: 0px 18px;
+
+    font-family: 'Cookie', cursive;
+    font-size: 3.75em;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: none;
+
+    color: #000;
+    background-color: orange;
+}

@@ -1,0 +1,18 @@
+/*
+JOSEPH P. PASAOA
+NavBar CSS | Bingebook (a full-stack binge-facilitating app)
+*/
+
+
+nav {
+    position: fixed;
+    height: 80px;
+    bottom: 0px;
+    left: 0px;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
