@@ -4,9 +4,13 @@ Client App MAIN Component | Bingebook (a full-stack binge-facilitating app)
 */
 
 
+/* EXTERNALS & LOCALS */
 import React from 'react';
+
 import './App.css';
 
+
+/* MAIN */
 function App() {
   return (
     <div className="App">
@@ -18,5 +22,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;
