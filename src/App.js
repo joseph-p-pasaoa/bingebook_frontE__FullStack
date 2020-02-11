@@ -8,17 +8,18 @@ Client App MAIN Component | Bingebook (a full-stack binge-facilitating app)
 import React from 'react';
 
 import './App.css';
+import NavBar from './components/NavBar';
 
 
 /* MAIN */
 function App() {
   return (
     <div className="App">
-      <h1>BingebOOk</h1>
-      <br />
-      <br />
-      <h2>Outlander (2014-)</h2>
-      <p>Hello world, Bingebook loading...!</p>
+      <div id="stage">
+        <h1>Outlander (2014-)</h1>
+        <p>Hello world, Bingebook loading...!</p>
+      </div>
+      <NavBar />
     </div>
   );
 }
