@@ -5,7 +5,7 @@ Client INDEX CSS | Bingebook (a full-stack binge-facilitating app)
 
 
 /* FONT INITS 
-font-family: 'Raleway', sans-serif;   // copy font
+font-family: 'Oxygen', sans-serif;
 font-family: 'Cinzel', serif;         // headers
 font-family: 'Poiret One', cursive;   // headers alternative
 font-family: 'Cookie', cursive;       // Logo+Branding
@@ -17,8 +17,8 @@ font-family: 'Cookie', cursive;       // Logo+Branding
   font-style: normal;
 }
 @font-face {
-  font-family: 'Raleway';
-  src: url('./assets/fonts/Raleway/Raleway-Regular.ttf') format('truetype');
+  font-family: 'Oxygen';
+  src: url('./assets/fonts/Oxygen/Oxygen-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -42,7 +42,7 @@ font-family: 'Cookie', cursive;       // Logo+Branding
 
 body {
   margin: 0;
-  font-family: 'Raleway', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
