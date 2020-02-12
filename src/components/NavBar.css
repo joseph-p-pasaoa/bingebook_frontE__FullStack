@@ -16,6 +16,8 @@ nav {
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-items: flex-start;
+
+    background-color: #fff;
 }
 
 ul#navbar {

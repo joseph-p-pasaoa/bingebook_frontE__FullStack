@@ -1,0 +1,16 @@
+/*
+JOSEPH P. PASAOA
+ShowsList Page CSS | Bingebook (a full-stack binge-facilitating app)
+*/
+
+
+.shows-container--flex {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: max-content;
+    margin-top: 50px;
+    margin-left: 100px;
+}
