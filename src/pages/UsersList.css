@@ -18,3 +18,15 @@ UsersList Page CSS | Bingebook (a full-stack binge-facilitating app)
 
     background-color: #e4e4d5;
 }
+
+.card-user--current {
+    margin-bottom: 44px;
+    width: 100%;
+}
+
+.card-user--current h3 {
+    font-family: 'Cinzel';
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-left: 80px;
+}

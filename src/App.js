@@ -26,6 +26,7 @@ const App = ({cId}) => {
       <ErrorBoundary>
         <Switch>
           <Route path={`/users/${cId}`} component={UserProfile} />
+          <Route path={`/users/*`} component={UserProfile} />
           <Route path={`/users`} component={UsersList} />
           <Route path={`/shows`} component={ShowsList} />
           <Route path={`/about`} render={About} />

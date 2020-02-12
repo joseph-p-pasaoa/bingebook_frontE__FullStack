@@ -6,7 +6,6 @@ ShowsList Page Component | Bingebook (a full-stack binge-facilitating app)
 
 /* EXTERNALS - LOCALS */
 import React, {useState, useEffect } from 'react';
-// import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
