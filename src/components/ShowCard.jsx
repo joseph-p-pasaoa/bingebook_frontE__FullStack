@@ -31,7 +31,7 @@ const ShowCard = (props) => {
           {props.watchers}
         </ul>
       </div>
-      <input type="hidden" value={props.id} />
+      <input type="hidden" value={props.id} id="id" />
     </li>
   );
 }

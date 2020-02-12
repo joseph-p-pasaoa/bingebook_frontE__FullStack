@@ -25,6 +25,10 @@ li.card-show {
     margin-right: 12px;
 }
 
+li.card-show h2 {
+    color: maroon;
+}
+
 .card-show--header {
     display: flex;
     flex-direction: row;

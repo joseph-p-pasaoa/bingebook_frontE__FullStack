@@ -1,0 +1,20 @@
+/*
+JOSEPH P. PASAOA
+UsersList Page CSS | Bingebook (a full-stack binge-facilitating app)
+*/
+
+
+.users-container--flex {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: auto;
+    min-height: 100%;
+    padding: 50px 5px 50px 100px;
+    border-top: solid 22px #b0bd8f;
+    border-bottom: solid 22px #b0bd8f;
+
+    background-color: #e4e4d5;
+}

@@ -22,7 +22,6 @@ const ShowsList = () => {
   useEffect(() => {
       const getAllShows = async () => {
         const response = await axios.get(hostname + "/shows/");
-        console.log(response.data.payload);
         setShows(response.data.payload);
       };
 

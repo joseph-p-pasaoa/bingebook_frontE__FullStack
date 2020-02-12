@@ -1,0 +1,49 @@
+/*
+JOSEPH P. PASAOA
+UserCard Component CSS | Bingebook (a full-stack binge-facilitating app)
+*/
+
+
+li.card-user {
+    width: 70%;
+    padding: 9px 9px 9px 12px;
+    border: solid 1px #b0bd8f;
+    border-radius:5px;
+    margin-bottom: 18px;
+    margin-left: 80px;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    background-color: #fff;
+}
+
+.card-user--avatar {
+    width: 96px;
+    height: 96px;
+    object-position: left;
+    object-fit: none;
+    border-radius: 12px;
+    margin-left: 24px;
+}
+
+.card-user--username {
+    font-size: 1em;
+    margin: 20px 6px 6px 30px;
+}
+
+.card-user--profile-link:link, .card-user--profile-link:visited {
+    margin: 0px;
+
+    text-decoration: none;
+    color: olive;
+    transition: color 0.25s;
+}
+
+.card-user--profile-link:hover, .card-user--profile-link:active {
+    color: rgb(255, 186, 13);
+    text-decoration: underline;
+}
