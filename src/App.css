@@ -10,13 +10,43 @@ body {
 }
 
 h1 {
+    /* page titles */
+    position: fixed;
+    bottom: 54px;
+    left: 252px;
+    width: max-content;
+    z-index: 10;
+
+    font-family: 'Cookie', cursive;
+    font-size: 2.7em;
+    padding: 3px;
+    margin: 3px;
+    text-shadow: 1px 3px 3px #999;
+}
+
+h2 {
+    /* show headers */
     font-family: 'Cinzel', serif;
-    font-size: 1.4em;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: maroon;
+    margin: 11px 6px 6px 11px;
+}
+
+h3 {
+    /* show years */
+    font-family: 'Oxygen', sans-serif;
+    font-size: 0.9em;
+    margin: 17px 6px 6px 8px;
 }
 
 p {
     font-family: 'Oxygen', sans-serif;
     font-size: 0.9em;
+}
+
+strong {
+    font-weight: bold;
 }
 
 
