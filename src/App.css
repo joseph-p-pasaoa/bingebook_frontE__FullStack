@@ -70,8 +70,12 @@ ul, li {
 
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 80px;
+    grid-template-rows: 1fr 110px;
 
     text-align: left;
     font-size: 1em;
+}
+
+div#stage {
+    overflow-y: auto;
 }
