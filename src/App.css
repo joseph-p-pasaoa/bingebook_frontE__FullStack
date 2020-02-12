@@ -12,7 +12,7 @@ body {
 h1 {
     /* page titles */
     position: fixed;
-    bottom: 54px;
+    bottom: 55px;
     left: 252px;
     width: max-content;
     z-index: 10;
