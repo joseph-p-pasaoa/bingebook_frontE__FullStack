@@ -34,13 +34,17 @@ const NavBar = ({cId, location}) => {
         // slideOpacity = 1; break;
     default: break;
   }
+  // navbar slider animation catch for userProfile pages not the current user
+  if (location.pathname.includes("/users/") && location.pathname !== `/users/${cId}`) {
+    sliderPosition = "translateX(154px)";
+  }
 
   return (
     <nav>
       <Logo />
       <ul id="navbar">
         <NavLink to={`/users/${cId}`}><li>My Binges</li></NavLink>
-        <NavLink to={`/users`}><li>Users</li></NavLink>
+        <NavLink to={`/users`} isActive={(match, {pathname}) => pathname.includes("/users/")}><li>Users</li></NavLink>
         <NavLink to={`/shows`}><li>Shows</li></NavLink>
         <NavLink to={`/about`}><li>About</li></NavLink>
         <li id="active-slide" style={{transform: sliderPosition, opacity: slideOpacity}}></li>
@@ -50,4 +54,4 @@ const NavBar = ({cId, location}) => {
 }
 
 
-export default compose( withRouter,connect(state => state.userAuthState) )(NavBar);
+export default compose( withRouter, connect(state => state.userAuthState) )(NavBar);
