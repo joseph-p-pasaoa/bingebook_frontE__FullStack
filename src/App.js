@@ -6,23 +6,33 @@ Client App MAIN Component | Bingebook (a full-stack binge-facilitating app)
 
 /* EXTERNALS & LOCALS */
 import React from 'react';
+import { connect } from 'react-redux';
+import { Switch, Route } from 'react-router-dom';
 
 import './App.css';
+import Home from './pages/Home';
 import NavBar from './components/NavBar';
+import UserProfile from './pages/UserProfile';
+import UsersList from './pages/UsersList';
+import ShowsList from './pages/ShowsList';
+import About from './pages/About';
 
 
 /* MAIN */
-function App() {
+const App = ({cId}) => {
   return (
     <div className="App">
-      <div id="stage">
-        <h1>Outlander (2014-)</h1>
-        <p>Hello world, Bingebook loading...!</p>
-      </div>
+      <Switch>
+        <Route path={`/users/${cId}`} component={UserProfile} />
+        <Route path={`/users`} component={UsersList} />
+        <Route path={`/shows`} component={ShowsList} />
+        <Route path={`/about`} render={About} />
+        <Route path={`/`} component={Home} />
+      </Switch>
       <NavBar />
     </div>
   );
 }
 
 
-export default App;
+export default connect(state => state.userAuthState)(App);;

@@ -17,15 +17,21 @@ import Logo from './Logo';
 /* MAIN */
 const NavBar = ({cId, location}) => {
   let sliderPosition = "translateX(-229px) translateY(0px)";
+  let slideOpacity = 1;
+  // let slideOpacity = 0; // slideOpacity sys commented out for future use
   switch (location.pathname) {
     case `/users/${cId}`: 
         sliderPosition = "translateX(0px)"; break;
+        // slideOpacity = 1; break;
     case "/users": 
         sliderPosition = "translateX(154px)"; break;
+        // slideOpacity = 1; break;
     case `/shows`:
         sliderPosition = "translateX(308px)"; break;
+        // slideOpacity = 1; break;
     case `/about`:
         sliderPosition = "translateX(462px)"; break;
+        // slideOpacity = 1; break;
     default: break;
   }
 
@@ -37,7 +43,7 @@ const NavBar = ({cId, location}) => {
         <NavLink to={`/users`}><li>Users</li></NavLink>
         <NavLink to={`/shows`}><li>Shows</li></NavLink>
         <NavLink to={`/about`}><li>About</li></NavLink>
-        <li id="active-slide" style={{transform: sliderPosition}}></li>
+        <li id="active-slide" style={{transform: sliderPosition, opacity: slideOpacity}}></li>
       </ul>
     </nav>
   );
