@@ -15,7 +15,7 @@ import React from 'react';
 const UserProfile = () => {
   return (
     <div id="stage">
-      UserProfile page
+      <h1>my binges</h1>
     </div>
   );
 }

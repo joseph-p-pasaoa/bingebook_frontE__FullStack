@@ -15,7 +15,7 @@ import React from 'react';
 const UsersList = () => {
   return (
     <div id="stage">
-      UsersList page
+      <h1>all users</h1>
     </div>
   );
 }

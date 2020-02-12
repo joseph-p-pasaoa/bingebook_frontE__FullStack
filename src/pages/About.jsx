@@ -15,7 +15,7 @@ import React from 'react';
 const About = () => {
   return (
     <div id="stage">
-      About page
+      <h1>about</h1>
     </div>
   );
 }
