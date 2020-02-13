@@ -4,29 +4,29 @@ UsersList Page CSS | Bingebook (a full-stack binge-facilitating app)
 */
 
 
-.users-container--flex {
+.list-users--container {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: flex-start;
-    align-items: flex-start;
-    width: auto;
-    min-height: 100%;
-    padding: 50px 5px 50px 100px;
-    border-top: solid 22px #b0bd8f;
-    border-bottom: solid 22px #b0bd8f;
-
-    background-color: #e4e4d5;
-}
-
-.card-user--current {
-    margin-bottom: 44px;
+    align-items: stretch;
     width: 100%;
 }
 
-.card-user--current h3 {
+.card-user--current-box {
+    width: 100%;
+    margin-bottom: 50px;
+    border-bottom: 1px solid #000;
+}
+
+.card-user--current-label {
+    position: relative;
+    top: -3px;
+    left: -7px;
+
     font-family: 'Cinzel';
     font-size: 1.5em;
     font-weight: bold;
-    margin-left: 80px;
+
+    color: #777;
 }

@@ -14,19 +14,19 @@ import './UserCard.css';
 /* MAIN */
 const UserCard = ({ avatarUrl, username, id }) => {
   const [ cardColor, setCardColor ] = useState("#fff");
-  const [ borderColor, setBorderColor ] = useState("#b0bd8f");
-  const [ usernameColor, setUsernameColor ] = useState("olive");
+  const [ borderColor, setBorderColor ] = useState("#444");
+  const [ usernameColor, setUsernameColor ] = useState("#111");
 
 
   const handleMouseOver = () => {
-    setCardColor("#fff2f2");
-    setBorderColor("red");
-    setUsernameColor("indianred");
+    setCardColor("#e8d8bf");
+    setBorderColor("#9c5b0a");
+    setUsernameColor("blue");
   }
   const handleMouseOut = () => {
     setCardColor("#fff");
-    setBorderColor("#b0bd8f");
-    setUsernameColor("olive");
+    setBorderColor("#444");
+    setUsernameColor("#111");
   }
 
 

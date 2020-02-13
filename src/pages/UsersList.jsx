@@ -63,11 +63,13 @@ const UsersList = ({cId}) => {
   return (
     <>
       <h1>find users</h1>
-      <div className="users-container--flex">
-        <div className="card-user--current">
-          <h2>Your Profile</h2>
+
+      <div className="list-users--container">
+        <div className="card-user--current-box">
           {cUserCard}
+          <h2 className="card-user--current-label">Your Profile</h2>
         </div>
+
         {listUsers}
       </div>
     </>

@@ -92,6 +92,7 @@ a.regular-copy:hover, a.regular-copy:active {
 div#stage--padding-right {
     overflow-y: auto;
 
+    min-height: 100%;
     padding-right: 100px;
 
     border-top: solid 22px #d4d4d4; /* #d8c3c3; */
@@ -101,6 +102,7 @@ div#stage--padding-right {
 
 div#stage--column-flex {
     width: auto;
+    min-height: 100%;
     padding: 50px 5px 50px 100px;
 
     display: flex;

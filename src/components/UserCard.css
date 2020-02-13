@@ -4,13 +4,12 @@ UserCard Component CSS | Bingebook (a full-stack binge-facilitating app)
 */
 
 
-li.card-user {
-    width: 70%;
+.card-user {
+    width: auto;
     padding: 9px 9px 9px 12px;
-    border: solid 1px #b0bd8f;
+    border: 1px solid #444;
     border-radius:5px;
     margin-bottom: 18px;
-    margin-left: 80px;
 
     display: flex;
     flex-direction: row;
@@ -22,10 +21,6 @@ li.card-user {
     transition: background-color 0.1s, border-color 0.1s;
 }
 
-li.card-user:hover {
-    background-color: #eee;
-}
-
 .card-user--avatar {
     width: 96px;
     height: 96px;
@@ -33,13 +28,13 @@ li.card-user:hover {
     object-fit: none;
     border-radius: 0px 12px 12px 0px;
     margin-left: 24px;
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
     border-width: 1px 0px 1px 3px;
     background-color: #fff;
 }
 
 .card-user--username {
-    font-size: 1em;
+    font-size: 1.4em;
     margin: 20px 6px 6px 30px;
 }
 
@@ -47,10 +42,4 @@ li.card-user:hover {
     margin: 0px;
 
     text-decoration: none;
-    color: olive;
 }
-
-/* .card-user--profile-link:hover, .card-user--profile-link:active {
-    color: #fff;
-    text-decoration: underline;
-} */

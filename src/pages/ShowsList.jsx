@@ -9,7 +9,7 @@ import React, {useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-// import './ShowsList.css';
+import './ShowsList.css';
 import { hostname } from '../helpers/urls';
 import ShowCard from '../components/ShowCard';
 
@@ -61,6 +61,7 @@ const ShowsList = () => {
   return (
     <>
       <h1>all shows</h1>
+
       <div className="list-shows--container">
         {listShows}
       </div>
