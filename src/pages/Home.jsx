@@ -14,9 +14,9 @@ import React from 'react';
 /* MAIN */
 const Home = () => {
   return (
-    <div id="stage">
+    <>
       Home page
-    </div>
+    </>
   );
 }
 

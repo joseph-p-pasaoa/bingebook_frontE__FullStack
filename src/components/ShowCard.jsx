@@ -15,23 +15,46 @@ import './ShowCard.css';
 const ShowCard = (props) => {
   return (
     <li className="card-show">
+
+      {/* IMAGE */}
       <img src={props.imgUrl} alt={`${props.title} poster`} className="card-show--img" />
       <div>
         <div className="card-show--header">
-          <h2>{props.title}</h2>
-          <h3>y.{props.year}</h3>
+
+          {/* TITLE */}
+          <h2 className="card-show--title">
+            {props.title}
+          </h2>
+
+          {/* YEAR */}
+          <h3 className="card-show--year">
+            y.{props.year}
+          </h3>
         </div>
-        <p className="card-show--genres"><strong>Genre(s):</strong> {props.genres}</p>
-        <a className="card-show--imdb-link"
+
+        {/* GENRES */}
+        <p className="card--text-single card-show--genres">
+          <strong>Genre(s):</strong> {props.genres}
+        </p>
+
+        {/* IMDB LINK */}
+        <a className="card--text-single regular-copy"
           href={`https://www.imdb.com/title/${props.imdbId}/`}
           target="_blank" rel="noopener noreferrer"
-        >IMDb page</a>
-        <ul className="watchers">
-          <li><strong>Users binging this:</strong></li>
+        >
+          IMDb page
+        </a>
+
+        {/* USERS WHO WATCH SHOW */}
+        <p className="card--text-single">
+          <strong>Who's binging this:</strong>
+        </p>
+        <ul className="card-show--watchers">
           {props.watchers}
         </ul>
+
       </div>
-      <input type="hidden" value={props.id} id="id" />
+      <input type="hidden" value={props.id} id="showId" />
     </li>
   );
 }

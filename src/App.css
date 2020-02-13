@@ -65,6 +65,19 @@ ul, li {
     list-style: none;
 }
 
+
+a.regular-copy:link, a.regular-copy:visited {
+    color: #9c5b0a;
+    text-decoration: none;
+
+    transition: color 0.3s;
+}
+
+a.regular-copy:hover, a.regular-copy:active {
+    color: #00f;
+    text-decoration: underline;
+}
+
 .App {
     position: relative;
 
@@ -76,6 +89,23 @@ ul, li {
     font-size: 1em;
 }
 
-div#stage {
+div#stage--padding-right {
     overflow-y: auto;
+
+    padding-right: 100px;
+
+    border-top: solid 22px #d4d4d4; /* #d8c3c3; */
+    border-bottom: solid 22px #d4d4d4; /* #d8c3c3; */
+    background-color: #efefef; /* #fff4f4; */
+}
+
+div#stage--column-flex {
+    width: auto;
+    padding: 50px 5px 50px 100px;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
 }

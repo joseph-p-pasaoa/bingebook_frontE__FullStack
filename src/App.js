@@ -6,7 +6,6 @@ Client App MAIN Component | Bingebook (a full-stack binge-facilitating app)
 
 /* EXTERNALS & LOCALS */
 import React from 'react';
-import { connect } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 
 import './App.css';
@@ -20,18 +19,21 @@ import About from './pages/About';
 
 
 /* MAIN */
-const App = ({cId}) => {
+const App = () => {
   return (
     <div className="App">
       <ErrorBoundary>
-        <Switch>
-          {/* <Route path={`/users/${cId}`} component={UserProfile} /> */}
-          <Route path={`/users/:id`} component={UserProfile} />
-          <Route path={`/users`} component={UsersList} />
-          <Route path={`/shows`} component={ShowsList} />
-          <Route path={`/about`} render={About} />
-          <Route path={`/`} component={Home} />
-        </Switch>
+        <div id="stage--padding-right">
+          <div id="stage--column-flex">
+            <Switch>
+              <Route path={`/users/:id`} component={UserProfile} />
+              <Route path={`/users`} component={UsersList} />
+              <Route path={`/shows`} component={ShowsList} />
+              <Route path={`/about`} render={About} />
+              <Route path={`/`} component={Home} />
+            </Switch>
+          </div>
+        </div>
       </ErrorBoundary>
       <NavBar />
     </div>
@@ -39,4 +41,4 @@ const App = ({cId}) => {
 }
 
 
-export default connect(state => state.userAuthState)(App);;
+export default App;

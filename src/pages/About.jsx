@@ -14,9 +14,9 @@ import React from 'react';
 /* MAIN */
 const About = () => {
   return (
-    <div id="stage">
+    <>
       <h1>about</h1>
-    </div>
+    </>
   );
 }
 
