@@ -66,6 +66,7 @@ const UserProfile = (props) => {
         imgUrl={show.img_url}
         isTop3={show.is_top3}
         watchStatus={show.watch_status}
+        genres={show.genres}
       />
     );
   });
