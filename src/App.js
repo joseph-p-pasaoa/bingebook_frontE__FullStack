@@ -31,7 +31,7 @@ const App = () => {
               <Route path={`/users/:id/addShow`} component={AddShowForm} />
               <Route path={`/users/:id`} component={UserProfile} />
               <Route path={`/users`} component={UsersList} />
-              <Route path={`/shows/:show_id/users/:user_id`} component={UserShowProfile} />
+              <Route path={`/shows/:show_id/user/:user_id`} component={UserShowProfile} />
               <Route path={`/shows`} component={ShowsList} />
               <Route path={`/about`} render={About} />
               <Route path={`/`} component={Home} />

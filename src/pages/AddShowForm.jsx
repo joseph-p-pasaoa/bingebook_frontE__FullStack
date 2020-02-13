@@ -60,18 +60,20 @@ const AddShowForm = ({cId}) => {
       imgUrl: showRes.Poster,
       watchStatus: "onRadar"
     }
-          console.log("showData: ", showData);
-    // add to our database
+
+    // add show to our database (catch if show already exists is in back-end)
     const addUserShowRes = await axios.post(hostname + `/users-shows/add/${cId}/${imdbId}`, showData);
     const payload = addUserShowRes.data.payload;
 
-    // add genres to shows-genres table in database
+    // auto-add genres to shows-genres table in database (catches if genres already exist are in back-end)
     if (payload.wasShowJustCreated === true) {
       const genres = showRes.Genre.toLowerCase().split(', ');
       const addGenres = genres.map(genre => axios.post(hostname + `/shows-genres/create/${payload.show_id}/${genre}`));
       const results = await Promise.all(addGenres);
       results.forEach(x => console.log("forEach: ", x));
     }
+
+    // auto-redirect user to specified relationship page
     history.push(`/shows/${payload.show_id}/user/${cId}`);
   }
 

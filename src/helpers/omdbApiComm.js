@@ -11,6 +11,7 @@ import apiKey from './secret';
 
 
 /* FETCHES */
+    // get search results
 export const getApiSearch = async (search) => {
   const baseUrl = `http://www.omdbapi.com/?apikey=${apiKey}&s=`;
   const url = baseUrl + search;
@@ -27,6 +28,7 @@ export const getApiSearch = async (search) => {
   }
 }
 
+    // get full data on one specific show
 export const getApiShow = async (imdbId) => {
   const baseUrl = `http://www.omdbapi.com/?apikey=${apiKey}&i=`;
   const url = baseUrl + imdbId;
