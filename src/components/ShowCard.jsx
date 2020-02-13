@@ -6,7 +6,7 @@ ShowCard Component | Bingebook (a full-stack binge-facilitating app)
 
 /* EXTERNALS - LOCALS */
 import React from 'react';
-import { withRouter, Route } from 'react-router-dom';
+import { withRouter, Route, Link } from 'react-router-dom';
 
 import './ShowCard.css';
 const placeholder = require('../assets/images/placeholder-show.svg');
@@ -22,13 +22,18 @@ const ShowCard = (props) => {
 
   /* CONFIGURE COMPONENT BY PATHNAME */
   const { pathname } = props.location;
+  let sectionImage = (<img src={imgUrl} alt={`${props.title} poster`} className="card-show--img" />);
+  let sectionTitle = (
+    <h2 className="card-show--title">
+      {props.title}
+    </h2>
+  );
   let sectionGenres = null,
     sectionWatchers = null,
     watchStatus = null,
     sectionShowId = null,
     sectionUserShowId = null
   ;
-
 
   // ALL SHOWS PAGE
   if (pathname.includes("/shows")) {
@@ -51,6 +56,18 @@ const ShowCard = (props) => {
 
   // USER PROFILE PAGES
   } else if (pathname.includes("/users")) {
+    sectionImage = (
+      <Link to={`/shows/${props.showId}/user/${props.userId}`}>
+        <img src={imgUrl} alt={`${props.title} poster`} className="card-show--img" />
+      </Link>
+    );
+    sectionTitle = (
+      <Link to={`/shows/${props.showId}/user/${props.userId}`} className="card-show--title-link">
+        <h2 className="card-show--title">
+          {props.title}
+        </h2>
+      </Link>
+    );
     sectionGenres = (
       <p className="card--text-single card-show--genres">
         <strong>Genre(s):</strong> {props.genres}
@@ -71,14 +88,13 @@ const ShowCard = (props) => {
     <li className="card-show">
 
       {/* IMAGE */}
-      <img src={imgUrl} alt={`${props.title} poster`} className="card-show--img" />
+      {sectionImage}
+
       <div className="card-show--right-side">
         <div className="card-show--header">
 
           {/* TITLE */}
-          <h2 className="card-show--title">
-            {props.title}
-          </h2>
+          {sectionTitle}
 
           {/* YEAR */}
           <h3 className="card-show--year">

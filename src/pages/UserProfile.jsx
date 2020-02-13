@@ -57,6 +57,7 @@ const UserProfile = (props) => {
     return (
       <ShowCard
         key={show.id}
+        userId={peekedId}
         relationshipId={show.id}
         showId={show.show_id}
         title={show.title}
