@@ -17,7 +17,7 @@ import { hostname } from '../helpers/urls';
 
 /* MAIN */
 const UserProfile = (props) => {
-  const [ peekedUser, setPeekedUser ] = useState({});
+  const [ peekedUser, setPeekedUser ] = useState({ username: "" });
   const [ usersShows, setUsersShows ] = useState([]);
 
   const peekedId = Number(props.match.params.id);
