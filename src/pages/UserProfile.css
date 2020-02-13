@@ -36,3 +36,9 @@ UserProfile Page CSS | Bingebook (a full-stack binge-facilitating app)
     margin: 6px 6px 22px 6px;
 }
 
+.list-users-shows--container {
+    margin-top: 22px;
+    width: 100%;
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
+}

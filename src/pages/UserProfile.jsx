@@ -36,15 +36,28 @@ const UserProfile = (props) => {
   }, [peekedId]);
 
   const listFavs = [];
-  const listNonFavs = [];
-  const listShows = usersShows.map(show => {
+  const favIdxsToExtract = [];
+  const listShows = usersShows.map((show, index) => {
+    if (show.is_top3 === true) {
+      favIdxsToExtract.push(index);
+    }
     return (
       <ShowCard
         key={show.id}
-        {...show}
+        relationshipId={show.id}
+        showId={show.show_id}
+        title={show.title}
+        year={show.year}
+        imdbId={show.imdb_id}
+        imgUrl={show.img_url}
+        isTop3={show.is_top3}
+        watchStatus={show.watch_status}
       />
     );
   });
+  for (let index of favIdxsToExtract) {
+    listFavs.push(listShows.splice(index, 1));
+  }
 
 
   return (
@@ -56,7 +69,16 @@ const UserProfile = (props) => {
         <img src={peekedUser.avatar_url} className="peeked-user--avatar" alt={`${peekedUser.username}'s avatar`} />
       </div>
 
-      {listShows}
+      <h2 className="list-users-shows--container--label">
+        {`${peekedUser.username}'s favorites`}
+      </h2>
+      <div className="list-users-shows--container">
+        {listFavs}
+      </div>
+
+      <div className="list-users-shows--container">
+        {listShows}
+      </div>
     </>
   );
 }

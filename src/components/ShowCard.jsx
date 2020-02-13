@@ -6,13 +6,39 @@ ShowCard Component | Bingebook (a full-stack binge-facilitating app)
 
 /* EXTERNALS - LOCALS */
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import './ShowCard.css';
 
 
 /* MAIN */
 const ShowCard = (props) => {
+
+  let showId = null, sectionWatchers = null, watchStatus = null, sectionUserShowId = null;
+  if (props.location.pathname.includes("/shows")) {
+    showId = props.id;
+    sectionWatchers = (
+      <>
+        <p className="card--text-single">
+          <strong>Who's binging this:</strong>
+        </p>
+        <ul className="card-show--watchers">
+          {props.watchers}
+        </ul>
+      </>
+    );
+  } else if (props.location.pathname.includes("/users")) {
+    showId = props.show_id;
+    const describe = {
+      "now": "CURRENTLY BINGING",
+      "onRadar": "ON MY WATCHLIST",
+      "watched": "ANOTHER BINGE COMPLETED!"
+    };
+    watchStatus = (<p className="card--text-single">{`Binge status: ${describe[props.watchStatus]}`}</p>);
+    sectionUserShowId = (<input type="hidden" value={props.id} id="userShowId" />);
+  }
+
+
   return (
     <li className="card-show">
 
@@ -46,18 +72,17 @@ const ShowCard = (props) => {
         </a>
 
         {/* USERS WHO WATCH SHOW */}
-        <p className="card--text-single">
-          <strong>Who's binging this:</strong>
-        </p>
-        <ul className="card-show--watchers">
-          {props.watchers}
-        </ul>
+        {sectionWatchers}
+
+        {/* BINGE STATUS */}
+        {watchStatus}
 
       </div>
-      <input type="hidden" value={props.id} id="showId" />
+      <input type="hidden" value={showId} id="showId" />
+      {sectionUserShowId}
     </li>
   );
 }
 
 
-export default ShowCard;
+export default withRouter(ShowCard);
