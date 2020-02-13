@@ -32,9 +32,13 @@ const UserCard = ({ avatarUrl, username, id, userId }) => {
   }
 
 
-  // for userProfile pages that send prop userId instead
+  // for userProfile pages that send prop userId instead + tweak styling to suit
+  let flexUserCard = null;
   if (atUserShowProfile) {
     id = userId;
+    flexUserCard = {
+      display: "flex", flexDirection: "column", marginRight: "22px"
+    }
   }
 
 
@@ -45,7 +49,7 @@ const UserCard = ({ avatarUrl, username, id, userId }) => {
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
     >
-      <li className="card-user" style={{ backgroundColor: cardColor, borderColor: borderColor }}>
+      <li className="card-user" style={{ backgroundColor: cardColor, borderColor: borderColor, ...flexUserCard }}>
         <img src={avatarUrl} alt={`${username} avatar`} className="card-user--avatar"/>
 
         <div className="card-user--info">

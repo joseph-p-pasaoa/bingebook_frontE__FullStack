@@ -33,26 +33,9 @@ const ShowCard = (props) => {
     watchStatus = null
   ;
 
-  // ALL SHOWS PAGE
-  if (pathname.includes("/shows")) {
-    sectionGenres = (
-      <p className="card--text-single card-show--genres">
-        <strong>Genre(s):</strong> {props.genres}
-      </p>
-    );
-    sectionWatchers = (
-      <>
-        <p className="card--text-single">
-          <strong>Who's binging this:</strong>
-        </p>
-        <ul className="card-show--watchers">
-          {props.watchers}
-        </ul>
-      </>
-    );
 
   // USER PROFILE PAGES
-  } else if (pathname.includes("/users")) {
+  if (pathname.includes("/user")) {
     sectionImage = (
       <Link to={`/shows/${props.showId}/user/${props.userId}`}>
         <img src={imgUrl} alt={`${props.title} poster`} className="card-show--img" />
@@ -76,6 +59,24 @@ const ShowCard = (props) => {
       "watched": "ANOTHER BINGE COMPLETED!"
     };
     watchStatus = (<p className="card--text-single">{`Binge status: ${describe[props.watchStatus]}`}</p>);
+
+  // ALL SHOWS PAGE
+  } else if (pathname.includes("/shows")) {
+    sectionGenres = (
+      <p className="card--text-single card-show--genres">
+        <strong>Genre(s):</strong> {props.genres}
+      </p>
+    );
+    sectionWatchers = (
+      <>
+        <p className="card--text-single">
+          <strong>Who's binging this:</strong>
+        </p>
+        <ul className="card-show--watchers">
+          {props.watchers}
+        </ul>
+      </>
+    );
   }
 
 
