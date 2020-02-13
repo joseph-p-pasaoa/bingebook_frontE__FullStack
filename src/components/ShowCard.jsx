@@ -6,7 +6,7 @@ ShowCard Component | Bingebook (a full-stack binge-facilitating app)
 
 /* EXTERNALS - LOCALS */
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Route } from 'react-router-dom';
 
 import './ShowCard.css';
 const placeholder = require('../assets/images/placeholder-show.svg');
@@ -21,16 +21,17 @@ const ShowCard = (props) => {
   }
 
   /* CONFIGURE COMPONENT BY PATHNAME */
+  const { pathname } = props.location;
   let sectionGenres = null,
     sectionWatchers = null,
     watchStatus = null,
-    sectionAdd = null,
     sectionShowId = null,
     sectionUserShowId = null
   ;
 
+
   // ALL SHOWS PAGE
-  if (props.location.pathname.includes("/shows")) {
+  if (pathname.includes("/shows")) {
     sectionGenres = (
       <p className="card--text-single card-show--genres">
         <strong>Genre(s):</strong> {props.genres}
@@ -48,20 +49,8 @@ const ShowCard = (props) => {
     );
     sectionShowId = (<input type="hidden" value={props.id} id="showId" />);
 
-  // ADDSHOW PAGE
-  } else if (props.location.pathname.includes("/addShow")) {
-    sectionAdd = (
-      <button
-        type="button"
-        onClick={(e) => props.handleAddShowClick(e, props.imdbId)}
-        className="addshow-btn"
-      >
-        Add Show
-      </button>
-    );
-
   // USER PROFILE PAGES
-  } else if (props.location.pathname.includes("/users")) {
+  } else if (pathname.includes("/users")) {
     sectionGenres = (
       <p className="card--text-single card-show--genres">
         <strong>Genre(s):</strong> {props.genres}
@@ -115,7 +104,15 @@ const ShowCard = (props) => {
         {watchStatus}
 
         {/* ADD SHOW BUTTON */}
-        {sectionAdd}
+        <Route path={"/users/:id/addShow"}>
+          <button
+            type="button"
+            onClick={(e) => props.handleAddShowClick(e, props.imdbId)}
+            className="addshow-btn"
+          >
+            Add Show
+          </button>
+        </Route>
 
       </div>
       {sectionShowId}

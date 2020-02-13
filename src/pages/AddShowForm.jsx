@@ -6,7 +6,7 @@ AddShowForm Page Component | Bingebook (a full-stack binge-facilitating app)
 
 /* EXTERNALS - LOCALS */
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
@@ -17,7 +17,7 @@ import { hostname } from '../helpers/urls';
 
 
 /* MAIN */
-const AddShowForm = ({cId}) => {
+const AddShowForm = ({cId, match}) => {
   const [ searchTxt, setSearchTxt ] = useState("");
   const [ errorMsg, setErrorMsg ] = useState("");
   const [ results, setResults ] = useState([]);
@@ -121,6 +121,9 @@ const AddShowForm = ({cId}) => {
 
   return(
     <>
+      {/* REDIRECT AWAY IF CURRENT USER IS NOT TARGET USER */}
+      {Number(match.params.id) !== cId ? <Redirect to={`/users/${match.params.id}`} /> : null}
+
       <h1>add a show</h1>
 
       <form onSubmit={handleSubmit} className="addshow--form">
