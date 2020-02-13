@@ -5,7 +5,7 @@ UserShowProfile Page Component | Bingebook (a full-stack binge-facilitating app)
 
 
 /* EXTERNALS - LOCALS */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
@@ -21,9 +21,38 @@ const UserShowProfile = (props) => {
     username: "",
     title: ""
   });
+  const [ commentTxt, setCommentTxt ] = useState("");
+  const [ comments, setComments ] = useState([]);
+  const [ errorMsg, setErrorMsg ] = useState("");
+
+  const refCommentInput = React.createRef();
+  const refBtnSubmit = React.createRef();
+  const refStageTop = React.createRef();
 
   const showId = props.match.params.show_id;
   const userId = props.match.params.user_id;
+
+  const {
+    avatar_url,
+    username,
+    title, 
+    year,
+    imdb_id,
+    img_url,
+    genres,
+    is_top3,
+    watch_status,
+    usershow_id
+  } = userShowData;
+
+  const getComments = useCallback(async () => {
+    const response = await axios.get(hostname + `/comments/${userId}/${showId}`);
+      setComments(response.data.payload);
+  }, [userId, showId]);
+
+  useEffect(() => {
+    getComments();
+  }, [getComments]);
 
   useEffect(() => {
     const getUserShowData = async () => {
@@ -35,34 +64,93 @@ const UserShowProfile = (props) => {
   }, [showId, userId]);
 
 
-  const {
-    user_id, 
-    avatar_url,
-    username,
-    show_id,
-    title, 
-    year,
-    imdb_id,
-    img_url,
-    genres,
-    is_top3,
-    watch_status,
-    usershow_id
-  } = userShowData;
+
+
+
+
+
+  const handleChange = (e) => {
+    setCommentTxt(e.target.value);
+  }
+
+  const handleKeydown = (e) => {
+    if (e.keyCode === 13 && !e.shiftKey) {
+      handleSubmit(e);
+    }
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    refBtnSubmit.current.blur();
+
+    if (!commentTxt || !commentTxt.trim()) {
+      refCommentInput.current.focus();
+      setErrorMsg("Please enter a valid comment! :/");
+    } else {
+      const cmtWithBreaks = commentTxt.split('\n').map((line, index) => {
+        return (
+          <span key={index}>
+            {line}<br />
+          </span>
+        );
+      });
+      const newCommentObj = {
+        commenterId: props.cId.toString(),
+        userShowId: usershow_id,
+        comment: cmtWithBreaks
+      };
+      try {
+        await axios.post(hostname + `/comments/add/${usershow_id}`, newCommentObj);
+        getComments();
+        setErrorMsg("");
+        setCommentTxt("");
+        refCommentInput.current.blur();
+      } catch (err) {
+        console.log ("error: ", err);
+      }
+    }
+  }
+
+  const handleReturnToTop = () => {
+    refStageTop.current.scrollIntoView({
+          // optional params
+          behaviour: 'smooth',
+          block: 'end',
+          inline: 'center',
+      });
+  }
+
+
+  let listComments = null;
+  if (comments.length) {
+    listComments = comments.map((comment, i) => {
+        return (
+          <div key={i}>
+            {comment.commenter_id}
+            {comment.commenter}
+            {comment.avatar_url}
+            {comment.time_modified}
+            {comment.body}
+          </div>
+        );
+    });
+  }
 
 
   return (
     <>
-      <h1>{`${userShowData.username}'s ${userShowData.title} binge`}</h1>
+      <h1>{`${userShowData.username}'s "${userShowData.title}" binge`}</h1>
+
+      <div ref={refStageTop}></div>
 
       <div className="user-show--header-grid">
         <UserCard
-          userId={user_id}
+          userId={userId}
           avatarUrl={avatar_url}
           username={username}
         />
         <ShowCard
-          showId={show_id}
+          showId={showId}
           title={title}
           year={year}
           imdbId={imdb_id}
@@ -72,6 +160,29 @@ const UserShowProfile = (props) => {
           watchStatus={watch_status}
         />
       </div>
+
+      <form className="form-comments" onSubmit={handleSubmit}>
+        <div className="form-row">
+          <label htmlFor="commentTxt">Comment</label>
+          <textarea 
+            type="text"
+            name="commentTxt"
+            id="commentTxt"
+            className="input-comment"
+            ref={refCommentInput}
+            value={commentTxt}
+            onChange={handleChange}
+            onKeyDown={handleKeydown}
+            placeholder={`Love or hate ${title}?`}
+          />
+        </div>
+        <div className="form-row">
+          <button className="btn-comment" ref={refBtnSubmit}>Submit</button>
+          <div className="msg-error">{errorMsg}</div>
+        </div>
+      </form>
+
+      {listComments}
     </>
   );
 }
