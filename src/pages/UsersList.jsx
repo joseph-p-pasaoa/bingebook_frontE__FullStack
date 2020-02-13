@@ -65,7 +65,7 @@ const UsersList = ({cId}) => {
       <h1>find users</h1>
       <div className="users-container--flex">
         <div className="card-user--current">
-          <h3>Your Profile</h3>
+          <h2>Your Profile</h2>
           {cUserCard}
         </div>
         {listUsers}

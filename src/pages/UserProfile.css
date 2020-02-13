@@ -1,0 +1,31 @@
+/*
+JOSEPH P. PASAOA
+UserProfile Page CSS | Bingebook (a full-stack binge-facilitating app)
+*/
+
+
+.peeked-user--data-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    margin-right: 100px;
+}
+
+.peeked-user--username {
+    font-family: 'Cinzel';
+    font-size: 1.5em;
+    font-weight: bold;
+    width: max-content;
+    margin: 22px 6px;
+}
+
+.peeked-user--avatar {
+    max-width: 70%;
+    max-height: 200px;
+    border-radius: 5px;
+    background-color: #fff;
+    margin: 22px 6px;
+}
+

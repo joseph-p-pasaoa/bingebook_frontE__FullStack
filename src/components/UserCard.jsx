@@ -18,12 +18,12 @@ const UserCard = ({ avatarUrl, username, id }) => {
   const [ usernameColor, setUsernameColor ] = useState("olive");
 
 
-  const handleMouseOver = (e) => {
+  const handleMouseOver = () => {
     setCardColor("#fff2f2");
     setBorderColor("red");
     setUsernameColor("indianred");
   }
-  const handleMouseOut = (e) => {
+  const handleMouseOut = () => {
     setCardColor("#fff");
     setBorderColor("#b0bd8f");
     setUsernameColor("olive");
