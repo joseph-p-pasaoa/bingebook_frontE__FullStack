@@ -34,7 +34,7 @@ const ShowsList = () => {
             <li key={watcher.watcherId}>
               <Link
                 key={watcher.watcherId}
-                to={`/shows/${show.id}/users/${watcher.watcherId}`}
+                to={`/shows/${show.id}/user/${watcher.watcherId}`}
                 className="regular-copy"
               >
                 {watcher.username}
