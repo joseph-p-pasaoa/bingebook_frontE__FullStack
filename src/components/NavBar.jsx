@@ -34,9 +34,11 @@ const NavBar = ({cId, location}) => {
         // slideOpacity = 1; break;
     default: break;
   }
-  console.log(!location.pathname.includes(`/users/${cId}`))
+
   // navbar slider animation catch for userProfile pages not the current user
-  if (location.pathname.includes("/users/")) {
+  if (location.pathname.includes("/shows/")) {
+    sliderPosition = "translateX(308px)";
+  } else if (location.pathname.includes("/users/")) {
     location.pathname.includes(`/users/${cId}`)
       ? sliderPosition = "translateX(0px)"
       : sliderPosition = "translateX(154px)";

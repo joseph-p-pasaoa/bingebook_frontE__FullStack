@@ -57,7 +57,6 @@ const UsersList = ({cId}) => {
     listUsers.splice(emptyIndex, 1);
   }
   cUserSplitter();
-  console.log(listUsers);
 
 
   return (

@@ -6,18 +6,23 @@ AddShowForm Page Component | Bingebook (a full-stack binge-facilitating app)
 
 /* EXTERNALS - LOCALS */
 import React, { useState } from 'react';
-// import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
+import axios from 'axios';
 
 import './AddShowForm.css';
 import ShowCard from '../components/ShowCard';
-import { getApiSearch } from '../helpers/omdbApiComm';
+import { getApiSearch, getApiShow } from '../helpers/omdbApiComm';
+import { hostname } from '../helpers/urls';
 
 
 /* MAIN */
-const AddShowForm = () => {
+const AddShowForm = ({cId}) => {
   const [ searchTxt, setSearchTxt ] = useState("");
   const [ errorMsg, setErrorMsg ] = useState("");
   const [ results, setResults ] = useState([]);
+
+  let history = useHistory();
 
   const refBtnSearch = React.createRef();
   const refBtnClear = React.createRef();
@@ -41,6 +46,33 @@ const AddShowForm = () => {
     e.preventDefault();
     refBtnClear.current.blur();
     setSearchTxt("");
+  }
+
+  const handleAddShowClick = async (e, imdbId) => {
+    e.preventDefault();
+
+    // grab all show details from OMDb API
+    const showRes = await getApiShow(imdbId);
+    const showData = {
+      imdbId: imdbId,
+      title: showRes.Title,
+      year: showRes.Year,
+      imgUrl: showRes.Poster,
+      watchStatus: "onRadar"
+    }
+          console.log("showData: ", showData);
+    // add to our database
+    const addUserShowRes = await axios.post(hostname + `/users-shows/add/${cId}/${imdbId}`, showData);
+    const payload = addUserShowRes.data.payload;
+
+    // add genres to shows-genres table in database
+    if (payload.wasShowJustCreated === true) {
+      const genres = showRes.Genre.toLowerCase().split(', ');
+      const addGenres = genres.map(genre => axios.post(hostname + `/shows-genres/create/${payload.show_id}/${genre}`));
+      const results = await Promise.all(addGenres);
+      results.forEach(x => console.log("forEach: ", x));
+    }
+    history.push(`/shows/${payload.show_id}/user/${cId}`);
   }
 
 
@@ -69,6 +101,7 @@ const AddShowForm = () => {
             title={title}
             year={year}
             imgUrl={imgUrl}
+            handleAddShowClick={handleAddShowClick}
           />
         );
     });
@@ -112,4 +145,4 @@ const AddShowForm = () => {
 }
 
 
-export default AddShowForm;
+export default connect(state => state.userAuthState)(AddShowForm);

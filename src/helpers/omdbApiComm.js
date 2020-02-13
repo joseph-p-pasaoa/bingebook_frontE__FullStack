@@ -17,7 +17,11 @@ export const getApiSearch = async (search) => {
 
   try {
     const response = await axios.get(url);
-    return response.data.Search;
+    if (response.data.Response && response.data.Response === "False") {
+      return [];
+    } else {
+      return response.data.Search;
+    }
   } catch (err) {
     console.log("error during API get: ", err);
   }
@@ -29,8 +33,7 @@ export const getApiShow = async (imdbId) => {
 
   try {
     const response = await axios.get(url);
-    console.log(response);
-    // return response;
+    return response.data;
   } catch (err) {
     console.log("error during API get: ", err);
   }

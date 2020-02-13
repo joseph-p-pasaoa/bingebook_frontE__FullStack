@@ -15,6 +15,7 @@ import NavBar from './components/NavBar';
 import AddShowForm from './pages/AddShowForm';
 import UserProfile from './pages/UserProfile';
 import UsersList from './pages/UsersList';
+import UserShowProfile from './pages/UserShowProfile';
 import ShowsList from './pages/ShowsList';
 import About from './pages/About';
 
@@ -30,6 +31,7 @@ const App = () => {
               <Route path={`/users/:id/addShow`} component={AddShowForm} />
               <Route path={`/users/:id`} component={UserProfile} />
               <Route path={`/users`} component={UsersList} />
+              <Route path={`/shows/:show_id/users/:user_id`} component={UserShowProfile} />
               <Route path={`/shows`} component={ShowsList} />
               <Route path={`/about`} render={About} />
               <Route path={`/`} component={Home} />

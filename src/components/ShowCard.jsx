@@ -9,7 +9,6 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 
 import './ShowCard.css';
-import BtnAddShow from './BtnAddShow';
 const placeholder = require('../assets/images/placeholder-show.svg');
 
 
@@ -51,7 +50,15 @@ const ShowCard = (props) => {
 
   // ADDSHOW PAGE
   } else if (props.location.pathname.includes("/addShow")) {
-    sectionAdd = (<BtnAddShow />);
+    sectionAdd = (
+      <button
+        type="button"
+        onClick={(e) => props.handleAddShowClick(e, props.imdbId)}
+        className="addshow-btn"
+      >
+        Add Show
+      </button>
+    );
 
   // USER PROFILE PAGES
   } else if (props.location.pathname.includes("/users")) {

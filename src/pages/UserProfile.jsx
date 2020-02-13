@@ -12,7 +12,6 @@ import axios from 'axios';
 
 import './UserProfile.css';
 import ShowCard from '../components/ShowCard';
-import BtnAddShow from '../components/BtnAddShow';
 import { hostname } from '../helpers/urls';
 
 
@@ -43,7 +42,7 @@ const UserProfile = (props) => {
   if (isCurrentUser) {
     addShowBtn = (
       <Link to={`/users/${props.cId}/addShow`}>
-        <BtnAddShow />
+        <button type="button" className="addshow-btn">Add Show</button>
       </Link>
     );
   }
