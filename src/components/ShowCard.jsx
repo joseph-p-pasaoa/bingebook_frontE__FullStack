@@ -30,9 +30,7 @@ const ShowCard = (props) => {
   );
   let sectionGenres = null,
     sectionWatchers = null,
-    watchStatus = null,
-    sectionShowId = null,
-    sectionUserShowId = null
+    watchStatus = null
   ;
 
   // ALL SHOWS PAGE
@@ -52,7 +50,6 @@ const ShowCard = (props) => {
         </ul>
       </>
     );
-    sectionShowId = (<input type="hidden" value={props.id} id="showId" />);
 
   // USER PROFILE PAGES
   } else if (pathname.includes("/users")) {
@@ -79,8 +76,6 @@ const ShowCard = (props) => {
       "watched": "ANOTHER BINGE COMPLETED!"
     };
     watchStatus = (<p className="card--text-single">{`Binge status: ${describe[props.watchStatus]}`}</p>);
-    sectionShowId = (<input type="hidden" value={props.show_id} id="showId" />);
-    sectionUserShowId = (<input type="hidden" value={props.id} id="userShowId" />);
   }
 
 
@@ -131,8 +126,6 @@ const ShowCard = (props) => {
         </Route>
 
       </div>
-      {sectionShowId}
-      {sectionUserShowId}
     </li>
   );
 }

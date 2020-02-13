@@ -52,7 +52,6 @@ const UserCard = ({ avatarUrl, username, id }) => {
           </h2>
         </Link>
       </div>
-      <input type="hidden" value={id} id="id" />
     </li>
   );
 }
