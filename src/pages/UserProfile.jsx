@@ -50,11 +50,13 @@ const UserProfile = (props) => {
   return (
     <>
       <h1>{isCurrentUser ? "my binges" : `${peekedUser.username}'s binges`}</h1>
-      <div className="peeked-user--data-container">
-        <div className="peeked-user--username">{peekedUser.username}</div>
+
+      <div className="peeked-user--info-container">
+        <h2 className="peeked-user--username">{peekedUser.username}</h2>
         <img src={peekedUser.avatar_url} className="peeked-user--avatar" alt={`${peekedUser.username}'s avatar`} />
       </div>
-      <div className="card-shows--container">{listShows}</div>
+
+      {listShows}
     </>
   );
 }
