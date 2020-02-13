@@ -9,7 +9,6 @@ UserCard Component CSS | Bingebook (a full-stack binge-facilitating app)
     padding: 9px 9px 9px 12px;
     border: 1px solid #444;
     border-radius:5px;
-    margin-bottom: 18px;
 
     display: flex;
     flex-direction: row;
@@ -18,7 +17,7 @@ UserCard Component CSS | Bingebook (a full-stack binge-facilitating app)
     align-items: flex-start;
 
     background-color: #fff;
-    transition: background-color 0.1s, border-color 0.1s;
+    transition: background-color 0.3s, border-color 0.3s;
 }
 
 .card-user--avatar {
@@ -36,10 +35,11 @@ UserCard Component CSS | Bingebook (a full-stack binge-facilitating app)
 .card-user--username {
     font-size: 1.4em;
     margin: 20px 6px 6px 30px;
+    transition: color 0.3s;
 }
 
 .card-user--profile-link {
-    margin: 0px;
+    margin: 0px 0px 18px 0px;
 
     text-decoration: none;
 }
