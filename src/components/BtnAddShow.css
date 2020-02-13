@@ -1,0 +1,14 @@
+/*
+Joseph P. Pasaoa
+AddShow Button Component CSS | Bingebook (a full-stack binge-facilitating app)
+*/
+
+
+.addshow-btn {
+    padding: 2px 15px;
+    margin: 22px 3px 6px 11px;
+    font-size: 0.9em;
+    border-radius: 15px;
+    box-shadow: 1px 2px 3px #999;
+    cursor: pointer;
+}

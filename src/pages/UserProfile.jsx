@@ -6,11 +6,13 @@ UserProfile Page Component | Bingebook (a full-stack binge-facilitating app)
 
 /* EXTERNALS - LOCALS */
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
 import './UserProfile.css';
 import ShowCard from '../components/ShowCard';
+import BtnAddShow from '../components/BtnAddShow';
 import { hostname } from '../helpers/urls';
 
 
@@ -35,6 +37,18 @@ const UserProfile = (props) => {
     getPeekedUserComplete();
   }, [peekedId]);
 
+
+  // LINK BUTTON TO ADD SHOW IF ON CURRENT USER'S PROFILE
+  let addShowBtn = null;
+  if (isCurrentUser) {
+    addShowBtn = (
+      <Link to={`/users/${props.cId}/addShow`}>
+        <BtnAddShow />
+      </Link>
+    );
+  }
+
+  // BUILD SHOW CARDS SECTION
   const listFavs = [];
   const favIdxsToExtract = [];
   const listShows = usersShows.map((show, index) => {
@@ -69,8 +83,10 @@ const UserProfile = (props) => {
         <img src={peekedUser.avatar_url} className="peeked-user--avatar" alt={`${peekedUser.username}'s avatar`} />
       </div>
 
+      {addShowBtn}
+
       <h2 className="list-users-shows--container--label">
-        {`${peekedUser.username}'s favorites`}
+        {isCurrentUser ? "my favorites" : `${peekedUser.username}'s favorites`}
       </h2>
       <div className="list-users-shows--container">
         {listFavs}

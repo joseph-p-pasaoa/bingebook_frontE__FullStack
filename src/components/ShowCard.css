@@ -25,6 +25,14 @@ li.card-show {
     margin-right: 22px;
 }
 
+.card-show--right-side {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
 .card-show--title {
     color: #444;
 }

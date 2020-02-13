@@ -12,6 +12,7 @@ import './App.css';
 import ErrorBoundary from './components/ErrorBoundary';
 import Home from './pages/Home';
 import NavBar from './components/NavBar';
+import AddShowForm from './pages/AddShowForm';
 import UserProfile from './pages/UserProfile';
 import UsersList from './pages/UsersList';
 import ShowsList from './pages/ShowsList';
@@ -26,6 +27,7 @@ const App = () => {
         <div id="stage--padding-right">
           <div id="stage--column-flex">
             <Switch>
+              <Route path={`/users/:id/addShow`} component={AddShowForm} />
               <Route path={`/users/:id`} component={UserProfile} />
               <Route path={`/users`} component={UsersList} />
               <Route path={`/shows`} component={ShowsList} />

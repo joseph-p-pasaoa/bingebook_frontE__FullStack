@@ -9,14 +9,34 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 
 import './ShowCard.css';
+import BtnAddShow from './BtnAddShow';
+const placeholder = require('../assets/images/placeholder-show.svg');
 
 
 /* MAIN */
 const ShowCard = (props) => {
 
-  let showId = null, sectionWatchers = null, watchStatus = null, sectionUserShowId = null;
+  let imgUrl = placeholder;
+  if (props.imgUrl && props.imgUrl !== "N/A") {
+    imgUrl = props.imgUrl;
+  }
+
+  /* CONFIGURE COMPONENT BY PATHNAME */
+  let sectionGenres = null,
+    sectionWatchers = null,
+    watchStatus = null,
+    sectionAdd = null,
+    sectionShowId = null,
+    sectionUserShowId = null
+  ;
+
+  // ALL SHOWS PAGE
   if (props.location.pathname.includes("/shows")) {
-    showId = props.id;
+    sectionGenres = (
+      <p className="card--text-single card-show--genres">
+        <strong>Genre(s):</strong> {props.genres}
+      </p>
+    );
     sectionWatchers = (
       <>
         <p className="card--text-single">
@@ -27,14 +47,26 @@ const ShowCard = (props) => {
         </ul>
       </>
     );
+    sectionShowId = (<input type="hidden" value={props.id} id="showId" />);
+
+  // ADDSHOW PAGE
+  } else if (props.location.pathname.includes("/addShow")) {
+    sectionAdd = (<BtnAddShow />);
+
+  // USER PROFILE PAGES
   } else if (props.location.pathname.includes("/users")) {
-    showId = props.show_id;
+    sectionGenres = (
+      <p className="card--text-single card-show--genres">
+        <strong>Genre(s):</strong> {props.genres}
+      </p>
+    );
     const describe = {
       "now": "CURRENTLY BINGING",
       "onRadar": "ON MY WATCHLIST",
       "watched": "ANOTHER BINGE COMPLETED!"
     };
     watchStatus = (<p className="card--text-single">{`Binge status: ${describe[props.watchStatus]}`}</p>);
+    sectionShowId = (<input type="hidden" value={props.show_id} id="showId" />);
     sectionUserShowId = (<input type="hidden" value={props.id} id="userShowId" />);
   }
 
@@ -43,8 +75,8 @@ const ShowCard = (props) => {
     <li className="card-show">
 
       {/* IMAGE */}
-      <img src={props.imgUrl} alt={`${props.title} poster`} className="card-show--img" />
-      <div>
+      <img src={imgUrl} alt={`${props.title} poster`} className="card-show--img" />
+      <div className="card-show--right-side">
         <div className="card-show--header">
 
           {/* TITLE */}
@@ -59,9 +91,7 @@ const ShowCard = (props) => {
         </div>
 
         {/* GENRES */}
-        <p className="card--text-single card-show--genres">
-          <strong>Genre(s):</strong> {props.genres}
-        </p>
+        {sectionGenres}
 
         {/* IMDB LINK */}
         <a className="card--text-single regular-copy"
@@ -77,8 +107,11 @@ const ShowCard = (props) => {
         {/* BINGE STATUS */}
         {watchStatus}
 
+        {/* ADD SHOW BUTTON */}
+        {sectionAdd}
+
       </div>
-      <input type="hidden" value={showId} id="showId" />
+      {sectionShowId}
       {sectionUserShowId}
     </li>
   );
