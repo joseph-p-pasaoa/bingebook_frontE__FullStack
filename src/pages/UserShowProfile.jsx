@@ -12,6 +12,7 @@ import axios from 'axios';
 import './UserShowProfile.css';
 import UserCard from '../components/UserCard';
 import ShowCard from '../components/ShowCard';
+import CommentCard from '../components/CommentCard';
 import { hostname } from '../helpers/urls';
 
 
@@ -59,14 +60,8 @@ const UserShowProfile = (props) => {
       const response = await axios.get(hostname + `/users-shows/show/${showId}/user/${userId}`);
       setUserShowData(response.data.payload);
     }
-
     getUserShowData();
   }, [showId, userId]);
-
-
-
-
-
 
 
   const handleChange = (e) => {
@@ -87,24 +82,17 @@ const UserShowProfile = (props) => {
       refCommentInput.current.focus();
       setErrorMsg("Please enter a valid comment! :/");
     } else {
-      const cmtWithBreaks = commentTxt.split('\n').map((line, index) => {
-        return (
-          <span key={index}>
-            {line}<br />
-          </span>
-        );
-      });
       const newCommentObj = {
         commenterId: props.cId.toString(),
         userShowId: usershow_id,
-        comment: cmtWithBreaks
+        comment: commentTxt
       };
+      setErrorMsg("");
+      setCommentTxt("");
+      refCommentInput.current.blur();
       try {
         await axios.post(hostname + `/comments/add/${usershow_id}`, newCommentObj);
         getComments();
-        setErrorMsg("");
-        setCommentTxt("");
-        refCommentInput.current.blur();
       } catch (err) {
         console.log ("error: ", err);
       }
@@ -113,7 +101,6 @@ const UserShowProfile = (props) => {
 
   const handleReturnToTop = () => {
     refStageTop.current.scrollIntoView({
-          // optional params
           behaviour: 'smooth',
           block: 'end',
           inline: 'center',
@@ -123,15 +110,18 @@ const UserShowProfile = (props) => {
 
   let listComments = null;
   if (comments.length) {
-    listComments = comments.map((comment, i) => {
+    listComments = comments.map(comment => {
         return (
-          <div key={i}>
-            {comment.commenter_id}
-            {comment.commenter}
-            {comment.avatar_url}
-            {comment.time_modified}
-            {comment.body}
-          </div>
+          <CommentCard
+            key={comment.comment_id}
+            commenterId={comment.commenter_id}
+            commenter={comment.commenter}
+            avatarUrl={comment.avatar_url}
+            usershowId={comment.user_show_id}
+            watcherId={comment.watcher_id}
+            comment={comment.body}
+            timeModified={comment.time_modified}
+          />
         );
     });
   }
@@ -162,8 +152,7 @@ const UserShowProfile = (props) => {
       </div>
 
       <form className="form-comments" onSubmit={handleSubmit}>
-        <div className="form-row">
-          <label htmlFor="commentTxt">Comment</label>
+          <label htmlFor="commentTxt">Leave a Comment</label>
           <textarea 
             type="text"
             name="commentTxt"
@@ -175,14 +164,15 @@ const UserShowProfile = (props) => {
             onKeyDown={handleKeydown}
             placeholder={`Love or hate ${title}?`}
           />
-        </div>
-        <div className="form-row">
-          <button className="btn-comment" ref={refBtnSubmit}>Submit</button>
-          <div className="msg-error">{errorMsg}</div>
-        </div>
+          <div className="flex-row">
+            <button className="btn-comment" ref={refBtnSubmit}>Submit</button>
+            <p className="msg-error">{errorMsg}</p>
+          </div>
       </form>
 
-      {listComments}
+      <ul className="flex-column comments--container">
+        {listComments}
+      </ul>
     </>
   );
 }
