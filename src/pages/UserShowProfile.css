@@ -50,6 +50,7 @@ UserShowProfile Page Component CSS | Bingebook (a full-stack binge-facilitating 
 
 .comments--container {
     align-items: stretch;
+    width: -webkit-fill-available;
     margin: 0 17%;
     padding-top: 22px;
     border-top: 4px solid #222;

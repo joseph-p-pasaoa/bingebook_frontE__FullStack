@@ -36,13 +36,8 @@ UserProfile Page CSS | Bingebook (a full-stack binge-facilitating app)
     margin: 6px 6px 22px 6px;
 }
 
-.peeked-user--addshow-btn {
-    padding: 3px 15px;
-    margin: 33px 3px 9px 7px;
-    font-size: 0.9em;
-    border-radius: 6px;
-    box-shadow: 1px 2px 3px #999;
-    cursor: pointer;
+.addshow-btn {
+    margin: 22px 3px 6px 11px;
 }
 
 .list-users-shows--container {
