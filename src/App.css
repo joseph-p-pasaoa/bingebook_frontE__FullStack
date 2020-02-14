@@ -89,6 +89,11 @@ button {
     align-items: flex-start;
 }
 
+.return-to-top-link {
+    align-self: center;
+    margin: 44px 3px 0px 3px;
+    font-size: 0.9em;
+}
 
 a.regular-copy:link, a.regular-copy:visited {
     color: #9c5b0a;
