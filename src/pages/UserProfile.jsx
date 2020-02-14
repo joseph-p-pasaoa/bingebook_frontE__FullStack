@@ -42,7 +42,7 @@ const UserProfile = (props) => {
   if (isCurrentUser) {
     addShowBtn = (
       <Link to={`/users/${props.cId}/addShow`}>
-        <button type="button" className="addshow-btn">Add Show</button>
+        <button type="button" className="addshow-btn">Add New Binge</button>
       </Link>
     );
   }

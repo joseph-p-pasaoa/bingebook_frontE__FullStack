@@ -5,7 +5,7 @@ AddShowForm Page Component | Bingebook (a full-stack binge-facilitating app)
 
 
 /* EXTERNALS - LOCALS */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
@@ -18,16 +18,29 @@ import { hostname } from '../helpers/urls';
 
 /* MAIN */
 const AddShowForm = ({cId, match}) => {
+  /* DECLARATIONS AND HOOKS */
   const [ searchTxt, setSearchTxt ] = useState("");
   const [ errorMsg, setErrorMsg ] = useState("");
+  const [ selectedGenre, setSelectedGenre ] = useState("default");
+  const [ genres, setGenres ] = useState([]);
   const [ results, setResults ] = useState([]);
 
+  const refInputTxt = React.createRef();
   const refBtnSearch = React.createRef();
   const refBtnClear = React.createRef();
 
   let history = useHistory();
 
+  useEffect(() => {
+    const getGenres = async () => {
+      const resGenres = await axios.get(hostname + "/genres/");
+      setGenres(resGenres.data.payload);
+    }
+    getGenres();
+  }, [])
 
+
+  /* HANDLERS */
   const handleChange = (e) => {
     setSearchTxt(e.target.value);
   }
@@ -35,6 +48,7 @@ const AddShowForm = ({cId, match}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!searchTxt || !searchTxt.trim()) {
+      refInputTxt.current.focus();
       setErrorMsg("Missing search. Please enter something valid to search for.");
     } else {
       refBtnSearch.current.blur();
@@ -46,6 +60,11 @@ const AddShowForm = ({cId, match}) => {
     e.preventDefault();
     refBtnClear.current.blur();
     setSearchTxt("");
+    setErrorMsg("");
+  }
+
+  const handleSelect = (e) => {
+    setSelectedGenre(e.target.value);
   }
 
   const handleAddShowClick = async (e, imdbId) => {
@@ -78,6 +97,7 @@ const AddShowForm = ({cId, match}) => {
   }
 
 
+  /* HELPERS */
   const getSearchResults = async (search) => {
     const results = await getApiSearch(search);
     setErrorMsg("");
@@ -104,6 +124,16 @@ const AddShowForm = ({cId, match}) => {
     setResults(results);
   }
 
+
+  /* PRE-RETURN */
+  let listGenres = null;
+  if (genres.length > 0) {
+    listGenres = genres.map(genre => {
+        return (
+          <option key={genre.id} value={genre.id}>{genre.name}</option>
+        );
+    });
+  }
 
   let listResults = null;
   if (results.length && results[0] !== "no results found") {
@@ -145,20 +175,31 @@ const AddShowForm = ({cId, match}) => {
 
       <h1>add a show</h1>
 
-      <form onSubmit={handleSubmit} className="addshow--form">
-        <input
-          type="text"
-          name="searchTxt"
-          className="addshow--input-txt"
-          value={searchTxt}
-          onChange={handleChange}
-          placeholder="Search..."
-        />
-        <button className="addshow--btn-search" ref={refBtnSearch}>Search</button>
-        <button className="addshow--btn-clear" onClick={handleClear} ref={refBtnClear}>Clear</button>
-      </form>
+      <div className="add-show--header-grid">
+        <form onSubmit={handleSubmit} className="addshow--form">
+          <input
+            type="text"
+            name="searchTxt"
+            className="addshow--input-txt"
+            value={searchTxt}
+            onChange={handleChange}
+            ref={refInputTxt}
+            placeholder="Search..."
+          />
+          <button className="addshow--btn-search" ref={refBtnSearch}>Search</button>
+          <button className="addshow--btn-clear" onClick={handleClear} ref={refBtnClear}>Clear</button>
+          <div className="addshow--msg-error">{errorMsg}</div>
+        </form>
 
-      <div className="addshow--msg-error">{errorMsg}</div>
+        <form className="flex-column">
+          <label htmlFor="genreSelect">Or, display shows by genre:</label>
+          <select id="genreSelect" value={selectedGenre} onChange={handleSelect}>
+            <option value="default" disabled>Choose a genre --</option>
+            {listGenres}
+          </select>
+        </form>
+      </div>
+
 
       <div className="addshow--results">
         {showing}
