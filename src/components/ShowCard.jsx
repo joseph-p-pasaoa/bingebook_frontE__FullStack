@@ -32,10 +32,21 @@ const ShowCard = (props) => {
     sectionWatchers = null,
     watchStatus = null
   ;
+  const atAddShowPage = useRouteMatch("/users/:id/addShow");
+  const atUserShowPage = useRouteMatch("/shows/:show_id/user/:user_id");
 
     // ADD SHOW PAGE
-  const atAddShowPage = useRouteMatch("/users/:id/addShow");
+
   if (atAddShowPage) {
+    sectionGenres = (
+      <p className="card--text-single card-show--genres">
+        <strong>Genre(s):</strong> {props.genres}
+      </p>
+    );
+
+    // USER-SHOW RELATIONSHIP PAGE
+
+  } else if (atUserShowPage) {
     sectionGenres = (
       <p className="card--text-single card-show--genres">
         <strong>Genre(s):</strong> {props.genres}
