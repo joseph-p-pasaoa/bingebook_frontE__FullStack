@@ -22,10 +22,10 @@ const AddShowForm = ({cId, match}) => {
   const [ errorMsg, setErrorMsg ] = useState("");
   const [ results, setResults ] = useState([]);
 
-  let history = useHistory();
-
   const refBtnSearch = React.createRef();
   const refBtnClear = React.createRef();
+
+  let history = useHistory();
 
 
   const handleChange = (e) => {
@@ -81,8 +81,25 @@ const AddShowForm = ({cId, match}) => {
   const getSearchResults = async (search) => {
     const results = await getApiSearch(search);
     setErrorMsg("");
+    // stop here if no results
     if (results.length === 0) {
       results[0] = "no results found";
+
+    // otherwise, get all genres of results and add to result objects
+    } else {
+      const resultImdbIds = [];
+      for (let result of results) {
+        resultImdbIds.push(result.imdbID);
+      }
+      const getShows = resultImdbIds.map(imdbId => getApiShow(imdbId));
+      const shows = await Promise.all(getShows);
+      const genresMap = {};
+      for (let show of shows) {
+        genresMap[show.imdbID] = show.Genre.toLowerCase();
+      }
+      for (let result of results) {
+        result["genres"] = genresMap[result.imdbID];
+      }
     };
     setResults(results);
   }
@@ -94,6 +111,7 @@ const AddShowForm = ({cId, match}) => {
         const imdbId = result.imdbID;
         const title = result.Title;
         const year = result.Year;
+        const genres = result.genres;
         const imgUrl = result.Poster;
 
         return (
@@ -102,6 +120,7 @@ const AddShowForm = ({cId, match}) => {
             imdbId={imdbId}
             title={title}
             year={year}
+            genres={genres}
             imgUrl={imgUrl}
             handleAddShowClick={handleAddShowClick}
           />

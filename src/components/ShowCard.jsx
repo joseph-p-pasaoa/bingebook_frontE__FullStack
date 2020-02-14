@@ -6,7 +6,7 @@ ShowCard Component | Bingebook (a full-stack binge-facilitating app)
 
 /* EXTERNALS - LOCALS */
 import React from 'react';
-import { withRouter, Route, Link } from 'react-router-dom';
+import { withRouter, Route, Link, useRouteMatch } from 'react-router-dom';
 
 import './ShowCard.css';
 const placeholder = require('../assets/images/placeholder-show.svg');
@@ -33,9 +33,17 @@ const ShowCard = (props) => {
     watchStatus = null
   ;
 
+    // ADD SHOW PAGE
+  const atAddShowPage = useRouteMatch("/users/:id/addShow");
+  if (atAddShowPage) {
+    sectionGenres = (
+      <p className="card--text-single card-show--genres">
+        <strong>Genre(s):</strong> {props.genres}
+      </p>
+    );
 
-  // USER PROFILE PAGES
-  if (pathname.includes("/user")) {
+    // USER PROFILE PAGES
+  } else if (pathname.includes("/user")) {
     sectionImage = (
       <Link to={`/shows/${props.showId}/user/${props.userId}`}>
         <img src={imgUrl} alt={`${props.title} poster`} className="card-show--img" />
@@ -60,7 +68,7 @@ const ShowCard = (props) => {
     };
     watchStatus = (<p className="card--text-single">{`Binge status: ${describe[props.watchStatus]}`}</p>);
 
-  // ALL SHOWS PAGE
+    // ALL SHOWS PAGE
   } else if (pathname.includes("/shows")) {
     sectionGenres = (
       <p className="card--text-single card-show--genres">
