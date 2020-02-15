@@ -107,20 +107,38 @@ const AddShowForm = ({cId, match}) => {
     if (results.length === 0) {
       results[0] = "no results found";
 
-    // otherwise, get all genres of results and add to result objects
+    // otherwise, proceed to add genres and if user-show relation exists to results
     } else {
+      // put results imdbIds into array
       const resultImdbIds = [];
       for (let result of results) {
         resultImdbIds.push(result.imdbID);
       }
+
+      // get genres from OMDb API and check relations with our server
       const getShows = resultImdbIds.map(imdbId => getApiShow(imdbId));
+      const checkAlreadyBingings = resultImdbIds.map(imdbId => {
+          return (
+            axios.get(hostname + `/users-shows/user/${cId}/imdb/${imdbId}`)
+              .then(res => res.data.payload)
+          );
+      });
       const shows = await Promise.all(getShows);
-      const genresMap = {};
+      const alreadyBingings = await Promise.all(checkAlreadyBingings);
+
+      // place genre and relationship responses into respective hashtables by imdbId
+      const genresMap = {}, alreadyBingingsMap = {};
       for (let show of shows) {
         genresMap[show.imdbID] = show.Genre.toLowerCase();
       }
+      for (let relation of alreadyBingings) {
+        alreadyBingingsMap[relation.imdbId] = relation.isAlreadyBinging;
+      }
+
+      // add genres and relationship bools to result objects
       for (let result of results) {
         result["genres"] = genresMap[result.imdbID];
+        result["related"] = alreadyBingingsMap[result.imdbID] ? true : false;
       }
     };
     setResults(results);
