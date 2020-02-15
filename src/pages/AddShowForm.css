@@ -48,6 +48,6 @@ AddShowForm Page Component CSS | Bingebook (a full-stack binge-facilitating app)
     color: maroon;
 }
 
-/* .addshow--results {
-    font-size: 0.9em;
-} */
+.addshow--results {
+    width: 100%;
+}

@@ -63,8 +63,10 @@ const AddShowForm = ({cId, match}) => {
     setErrorMsg("");
   }
 
-  const handleSelect = (e) => {
+  const handleSelect = async (e) => {
     setSelectedGenre(e.target.value);
+    const byGenreResults = await axios.get(hostname + `/shows/genre/${e.target.value}`);
+    setResults(byGenreResults.data.payload);
   }
 
   const handleAddShowClick = async (e, imdbId) => {
@@ -138,11 +140,11 @@ const AddShowForm = ({cId, match}) => {
   let listResults = null;
   if (results.length && results[0] !== "no results found") {
     listResults = results.map(result => {
-        const imdbId = result.imdbID;
-        const title = result.Title;
-        const year = result.Year;
+        const imdbId = result.imdbID || result.imdb_id;
+        const title = result.Title || result.title;
+        const year = result.Year || result.year;
         const genres = result.genres;
-        const imgUrl = result.Poster;
+        const imgUrl = result.Poster || result.img_url;
 
         return (
           <ShowCard
@@ -186,13 +188,13 @@ const AddShowForm = ({cId, match}) => {
             ref={refInputTxt}
             placeholder="Search..."
           />
-          <button className="addshow--btn-search" ref={refBtnSearch}>Search</button>
+          <button className="addshow--btn-search" ref={refBtnSearch}>Search IMDb</button>
           <button className="addshow--btn-clear" onClick={handleClear} ref={refBtnClear}>Clear</button>
           <div className="addshow--msg-error">{errorMsg}</div>
         </form>
 
         <form className="flex-column">
-          <label htmlFor="genreSelect">Or, display shows by genre:</label>
+          <label htmlFor="genreSelect">Or, display shows in our database by genre:</label>
           <select id="genreSelect" value={selectedGenre} onChange={handleSelect}>
             <option value="default" disabled>Choose a genre --</option>
             {listGenres}
