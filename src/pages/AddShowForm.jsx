@@ -65,7 +65,7 @@ const AddShowForm = ({cId, match}) => {
 
   const handleSelect = async (e) => {
     setSelectedGenre(e.target.value);
-    const byGenreResults = await axios.get(hostname + `/shows/genre/${e.target.value}`);
+    const byGenreResults = await axios.get(hostname + `/shows/genre/${e.target.value}/${cId}`);
     setResults(byGenreResults.data.payload);
   }
 
@@ -139,21 +139,21 @@ const AddShowForm = ({cId, match}) => {
 
   let listResults = null;
   if (results.length && results[0] !== "no results found") {
-    listResults = results.map(result => {
+    listResults = results.map((result, index) => {
         const imdbId = result.imdbID || result.imdb_id;
         const title = result.Title || result.title;
         const year = result.Year || result.year;
-        const genres = result.genres;
         const imgUrl = result.Poster || result.img_url;
 
         return (
           <ShowCard
-            key={imdbId}
+            key={index + imdbId}
             imdbId={imdbId}
             title={title}
             year={year}
-            genres={genres}
+            genres={result.genres}
             imgUrl={imgUrl}
+            related={result.related}
             handleAddShowClick={handleAddShowClick}
           />
         );

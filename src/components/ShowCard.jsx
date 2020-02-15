@@ -6,7 +6,7 @@ ShowCard Component | Bingebook (a full-stack binge-facilitating app)
 
 /* EXTERNALS - LOCALS */
 import React from 'react';
-import { withRouter, Route, Link, useRouteMatch } from 'react-router-dom';
+import { withRouter, Link, useRouteMatch } from 'react-router-dom';
 
 import './ShowCard.css';
 const placeholder = require('../assets/images/placeholder-show.svg');
@@ -30,7 +30,8 @@ const ShowCard = (props) => {
   );
   let sectionGenres = null,
     sectionWatchers = null,
-    watchStatus = null
+    watchStatus = null,
+    sectionAddButton = null
   ;
   const atAddShowPage = useRouteMatch("/users/:id/addShow");
   const atUserShowPage = useRouteMatch("/shows/:show_id/user/:user_id");
@@ -43,6 +44,26 @@ const ShowCard = (props) => {
         <strong>Genre(s):</strong> {props.genres}
       </p>
     );
+    if (props.related === false) {
+      sectionAddButton = (
+        <button
+          type="button"
+          onClick={(e) => props.handleAddShowClick(e, props.imdbId)}
+          className="addshow-btn"
+        >
+          Add Show
+        </button>
+      );
+    } else {
+      sectionAddButton = (
+        <button
+          type="button"
+          className="addshow-btn disabled"
+        >
+          Already Binging!
+        </button>
+      );
+    }
 
     // USER-SHOW RELATIONSHIP PAGE
 
@@ -135,15 +156,7 @@ const ShowCard = (props) => {
         {watchStatus}
 
         {/* ADD SHOW BUTTON */}
-        <Route path={"/users/:id/addShow"}>
-          <button
-            type="button"
-            onClick={(e) => props.handleAddShowClick(e, props.imdbId)}
-            className="addshow-btn"
-          >
-            Add Show
-          </button>
-        </Route>
+        {sectionAddButton}
 
       </div>
     </li>
