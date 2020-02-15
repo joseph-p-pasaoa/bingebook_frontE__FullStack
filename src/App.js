@@ -33,8 +33,8 @@ const App = () => {
               <Route path={`/users`} component={UsersList} />
               <Route path={`/shows/:show_id/user/:user_id`} component={UserShowProfile} />
               <Route path={`/shows`} component={ShowsList} />
-              <Route path={`/about`} render={About} />
-              <Route path={`/`} component={Home} />
+              <Route path={`/about`} component={About} />
+              <Route path={`/`} render={Home} />
             </Switch>
           </div>
         </div>
