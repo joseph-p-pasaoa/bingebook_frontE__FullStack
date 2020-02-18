@@ -110,7 +110,7 @@ const ShowCard = (props) => {
   // TOGGLE VARIATIONS BY ROUTE
   const onAddShowPage = useRouteMatch("/users/:id/addShow");
   const onUsersRoute = useRouteMatch("/users/:id");
-  const onShowsRoute = useRouteMatch("/shows");
+  const onShowsRoute = useRouteMatch({ exact: true, path: "/shows" });
 
   // for add a show page
   if (onAddShowPage) {
