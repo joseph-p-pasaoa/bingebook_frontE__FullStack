@@ -130,7 +130,7 @@ const UserShowProfile = (props) => {
 
   return (
     <>
-      <h1>{`${userShowData.username}'s "${userShowData.title}" binge`}</h1>
+      <h1>{`${userShowData.username}'s ${userShowData.title.length < 22 ? `'${userShowData.title}'` : ""} binge`}</h1>
 
       <div ref={refStageTop}></div>
 
