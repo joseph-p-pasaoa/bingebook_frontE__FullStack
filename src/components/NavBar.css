@@ -68,7 +68,7 @@ ul#navbar li#active-slide {
     left: 0px; */
     z-index: -10;
     transition-property: opacity, transform;
-    transition-duration: 0.2s,  0.25s;
+    transition-duration: 1s,  0.25s;
     background-color: red;
     transform: translateX(154px);
 }
