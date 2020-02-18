@@ -18,18 +18,18 @@ import Logo from './Logo';
 const NavBar = ({cId}) => {
   let sliderStyle = { transX: "translateX(0px)", opacity: 0 };
 
-  let isCurrentUserRoute = useRouteMatch(`/users/${cId}`);
-  let isUsersRoute = useRouteMatch(`/users`);
-  let isShowsRoute = useRouteMatch(`/shows`);
-  let isAboutRoute = useRouteMatch(`/about`);
+  let onCurrentUserRoute = useRouteMatch(`/users/${cId}`);
+  let onUsersRoute = useRouteMatch(`/users`);
+  let onShowsRoute = useRouteMatch(`/shows`);
+  let onAboutRoute = useRouteMatch(`/about`);
 
-  if (isCurrentUserRoute) {
+  if (onCurrentUserRoute) {
     sliderStyle = { transX: "translateX(0px)", opacity: 1 };
-  } else if (isUsersRoute) {
+  } else if (onUsersRoute) {
     sliderStyle = { transX: "translateX(154px)", opacity: 1 };
-  } else if (isShowsRoute) {
+  } else if (onShowsRoute) {
     sliderStyle = { transX: "translateX(308px)", opacity: 1 };
-  } else if (isAboutRoute) {
+  } else if (onAboutRoute) {
     sliderStyle = { transX: "translateX(462px)", opacity: 1 };
   }
 
